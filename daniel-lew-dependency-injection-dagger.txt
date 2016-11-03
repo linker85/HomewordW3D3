@@ -1,0 +1,51 @@
+What is a dependency? 
+It´s when one component of your app depends on another component of your app.
+What is dependency injection? 
+A dependency is an object that can be used (a service). An injection is the passing of a dependency to a dependent object (a client) that would use it. 
+The service is made part of the client's state. 
+Passing the service to the client, rather than allowing a client to build or find the service, is the fundamental requirement of the pattern.
+
+For example:
+public class Example {
+    private final Dependency dependency;
+
+    public Example(Dependency dependency) {
+        this.dependency = dependency;
+    }
+}
+
+An example of dependency injection in Android is OkHttp which uses an HTTP connection pool because connections are expensive, and you want to keep reusing them if possible. 
+For all the places in your app that are using HTTP, you want to share that one pool. In that case, it’s more useful to have dependency injection because you can share it all over the place. 
+The other really powerful thing that you can do with dependency injection is that you can configure the dependencies externally. 
+My object that requires the dependency, doesn’t have to know how to configure its own dependencies.
+
+Dependency inversion principle:
+For example lets say A depends on B. Another way to frame that is to say that A is coupled to B. 
+The two pieces of code have to have some coupling point and what the dependency inversion principle gets at is how tightly these two are coupled together. 
+When they are tightly coupled, it makes it harder to modify the code, whereas if they’re loosely coupled, it makes it much easier to modify the code.
+
+Dependency inversion to the rescue:
+This is where dependency inversion comes into play. What we do is we invert the normal dependencies that you’d expect, where instead of having copy, and keyboard, and printer all depending directly on each other, 
+what we do is stick an interface in between. The idea of the inversion here is that instead of them being directly coupled, now they both point to this interface in the middle. Now I have an interface Reader, 
+an interface Writer, and in copy I’m passing in a Reader and a Writer.
+
+The logic is pretty much the same, but now I’m no longer tightly coupled to that particular implementation of the keyboard reader and the printer writer. 
+Why would we want to do this? Again, we get the same things that we got from dependency injection. We can share dependencies. 
+You probably only have one keyboard and one printer hooked up to your computer. You want to be able to share that amongst multiple parts of your application. 
+Again, you can configure dependencies externally, and this is extremely useful because I can pass any sort of reader or writer into my copy module. I don’t have to have it be a keyboard reader, 
+I can also make a disk reader, and as long as that also implements the Reader interface, I can use that. The same with the printer writer. As long as I implement that Writer interface, 
+I can use any sort of writer that I want. Now my copy module, the logic is simple. It stays the same regardless of whatever implementation I pass in. 
+
+Dagger:
+	Advantages:
+		1.  It does a lot of the wiring for you.
+		2. Another advantage of using a framework is that it can add some extra logic that’s very common in dependencies.
+
+Dagger is called Dagger because it is based on directed acyclic graphs. That means it’s a graph of dependencies that doesn’t have any cycles in it.
+An ObjectGraph is part of the API of Dagger, and we provide a module to it. With that object graph that’s returned, you can then call “I want to get an instance of Greeter.” 
+Then that Greeter that’s returned is the one that you wanted to use. 
+
+Providers:
+Providers are useful for doing dependency inversion. 
+Providers are useful if you need to explicitly provide dependencies. That is, when someone asks for an instance of Greeter, asks for an instance of text, I can say, 
+“This is exactly what I want you to use in that case.” For one thing, it gives you greater control over the dependency.

@@ -1,0 +1,38 @@
+Libraries for beginners:
+
+Butter Knife v8.2
+Butter Knife is a great library that lets us use annotations to allow us to write less boilerplate code. 
+What are some benefits of Butter Knife? I’m betting you’ve written findViewById a million times. You know when you’re starting up a new activity you already have views, you’ve done that a lot. 
+Butter Knife is a great library that helps reduce the amount of times we have to do that. Butter Knife is great because there’s no cost at runtime. 
+All the work Butter Knife does is done at compilation time, so you don’t have to worry about slowing down your app for your users. 
+
+Picasso v2.5
+Picasso’s a great library that lets us download images and display them in image views. Some of the benefits of Picasso are that it automatically makes the HTTP request for you. 
+You don’t have to worry about that kind of stuff. Picasso will also cache the image, so you don’t have to worry about making that request again. It’s easy to crop, center, scale, or perform any kind of work that 
+you need to do on that image. It also takes care of downloading off of the main thread, so we don’t have to worry about that kind of networking on main thread exceptions.
+
+Gson v2.7
+Gson is a library that allows us to convert JSON to a Java object, and vice versa. Some benefits of Gson are it doesn’t require annotations in our classes; it’s super performant and commonly used.
+
+Retrofit v2.1
+If you’re using AsyncTask for all of your networking, I would consider using Retrofit. Reasons why you might want to use Retrofit:
+
+Type-safe.
+Built-in support for authentication.
+Parsing JSON into POJOs when you pass in a Gson factory.
+We just talked about Gson, so we’re going to pass in that Gson factory. Retrofit also supports RxJava which is, if you didn’t know, the new hotness. Retrofit also lets us execute HTTP requests synchronously 
+or asynchronously out of the gate. 
+
+Realm v1.1
+Realm is a great library that replaces SQLite for us.
+
+Here are some benefits of Realm:
+
+It’s really easy and simple to set up.
+It works by extending our models. With Realm the models are our schema for our database.
+It was made for mobile from the ground up.
+A lot of queries in Realm are fast enough to be run synchronously. I would suggest you do some of them in an asynchronous manner, but if you like to live on the edge, you can run them synchronously if you like.
+Realm also gives us the support to have multiple Realm databases on one app. That is a little bit outside the scheme of this talk, but there is info online about that.
+
+Dart & Henson v2.0
+Dart is a way to inject intent extras as a property onto an object. When you’re starting a new activity, and you want to pass along these extras on the intent, you can easily retrieve it with Dart:
